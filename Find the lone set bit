@@ -1,0 +1,23 @@
+#include <iostream>
+
+int findSetBit(int N) {
+    int countSetBits = 0;
+    int position = 0;
+    
+    while (N > 0) {
+        if (N & 1) {
+            countSetBits++;
+            position++;
+        } else {
+            position++;
+        }
+        
+        N >>= 1;
+    }
+    
+    if (countSetBits != 1) {
+        return -1;
+    }
+    
+    return position;
+}
