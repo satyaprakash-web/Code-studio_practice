@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxSumRectangle(vector<vector<int>>& arr, int n, int m) {
+    int maxSum = INT_MIN;
+
+    for (int left = 0; left < m; left++) {
+        vector<int> rowSum(n, 0);
+        for (int right = left; right < m; right++) {
+            for (int i = 0; i < n; i++) {
+                rowSum[i] += arr[i][right];
+            }
+
+            int maxEndingHere = rowSum[0];
+            int maxSoFar = rowSum[0];
+
+            for (int i = 1; i < n; i++) {
+                maxEndingHere = max(rowSum[i], maxEndingHere + rowSum[i]);
+                maxSoFar = max(maxSoFar, maxEndingHere);
+            }
+
+            maxSum = max(maxSum, maxSoFar);
+        }
+    }
+
+    return maxSum;
+}
