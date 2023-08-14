@@ -1,0 +1,21 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+std::vector<std::string> divideString(const std::string &word, int n) {
+    int len = word.length();
+    
+    // Check if it's possible to divide the word into n equal parts
+    if (len % n != 0) {
+        return {}; // Return an empty vector since it's not possible
+    }
+
+    int partSize = len / n;
+    std::vector<std::string> result;
+
+    for (int i = 0; i < len; i += partSize) {
+        std::string part = word.substr(i, partSize);
+        result.push_back(part);
+    }
+    return result;
+}
