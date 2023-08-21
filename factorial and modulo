@@ -1,0 +1,8 @@
+int boringFactorials(int n, int p)
+{
+    if (n == 0 || n == 1)
+        return 1;
+
+    int ans = (n * boringFactorials(n - 1, p)) % p;    
+    return ans;
+}
