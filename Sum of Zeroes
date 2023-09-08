@@ -1,0 +1,30 @@
+//Brute Force code
+
+#include <vector>
+int coverageOfMatrix(vector<vector<int>>& mat) {
+    int rows = mat.size();
+    int cols = mat[0].size();
+    int sum = 0;
+
+    // Define directions to check adjacent cells: left, right, up, down
+    int dx[] = {-1, 1, 0, 0};
+    int dy[] = {0, 0, -1, 1};
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (mat[i][j] == 0) {
+                int count = 0;
+                for (int k = 0; k < 4; k++) {
+                    int x = i + dx[k];
+                    int y = j + dy[k];
+                    if (x >= 0 && x < rows && y >= 0 && y < cols && mat[x][y] == 1) {
+                        count++;
+                    }
+                }
+                sum += count;
+            }
+        }
+    }
+
+    return sum;
+}
