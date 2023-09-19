@@ -1,0 +1,15 @@
+#include <bits/stdc++.h> 
+vector<int> findDup(vector<int>& arr) {
+	vector<int> duplicates;
+    vector<bool>bitArray(32001, false);
+
+	for(int x: arr){
+    if(bitArray[x]){
+		duplicates.push_back(x);
+	} else {
+		bitArray[x] = true;
+	}
+	}
+	sort(duplicates.begin(), duplicates.end());
+	return duplicates;
+}
