@@ -1,0 +1,20 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+char findNonRepeating(string str) {
+    unordered_map<char, int> freq;
+
+    // Calculate character frequencies
+    for (char c : str) {
+        freq[c]++;
+    }
+
+    // Find the first non-repeating character
+    for (char c : str) {
+        if (freq[c] == 1) {
+            return c;
+        }
+    }
+    return '#'; 
+}
