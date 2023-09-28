@@ -1,0 +1,44 @@
+
+// Using Recursion
+#include <vector>
+
+int solve(int *arr, int s, int e, int k) {
+    if (s > e)
+        return -1;
+
+    int mid = s + (e - s) / 2;
+    if (arr[mid] == k)
+        return mid;
+
+    if (arr[mid] < k) {
+        return solve(arr, mid + 1, e, k);
+    } else {
+        return solve(arr, s, mid - 1, k);
+    }
+}
+
+int search(vector<int> &nums, int target) {
+    int n = nums.size(); 
+    return solve(&nums[0], 0, n - 1, target);
+}
+
+
+
+
+// Without Recursion
+int search(vector<int>& nums, int target) {
+   int n= nums.size();
+   int low=0, high=n-1;
+   while (low <= high) {
+     int mid = (low + high) / 2;
+     if (nums[mid] == target)
+       return mid;
+     else if (target > nums[mid])
+       low = mid + 1;
+     else
+       high = mid - 1;
+   }
+   return -1;
+}
+
+
