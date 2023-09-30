@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+double tossStrangeCoins(vector<double> &prob, int target) {
+    int n = prob.size();
+    
+    // Create a 2D DP array to store the probabilities
+    // dp[i][j] represents the probability of getting 'j' heads when tossing the first 'i' coins.
+    vector<vector<double>> dp(n + 1, vector<double>(target + 1, 0.0));
+    
+    // Base case: Probability of getting 0 heads with 0 coins is 1.
+    dp[0][0] = 1.0;
+    
+    // Fill in the DP table
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 0; j <= target; ++j) {
+            // Probability of not getting heads for the ith coin
+            double noHead = 1.0 - prob[i - 1];
+            
+            // Update dp[i][j] using the probabilities of getting (j-1) heads
+            // with (i-1) coins and getting 'j' heads with 'i-1' coins.
+            dp[i][j] = dp[i - 1][j] * noHead;
+            if (j > 0) {
+                dp[i][j] += dp[i - 1][j - 1] * prob[i - 1];
+            }
+        }
+    }
+    
+    // The answer is dp[n][target], which represents the probability of getting 'target' heads
+    // when tossing all 'n' coins.
+    return dp[n][target];
+}
+
+int main() {
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        int n, target;
+        cin >> n >> target;
+        vector<double> prob(n);
+        for (int i = 0; i < n; ++i) {
+            cin >> prob[i];
+        }
+        
+        double result = tossStrangeCoins(prob, target);
+        cout << fixed << setprecision(6) << result << endl;
+    }
+    
+    return 0;
+}
