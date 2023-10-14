@@ -1,0 +1,27 @@
+vector<int> getSecondOrderElements(int n, std::vector<int> a) {
+if (n < 2) {
+return {};
+}
+
+int firstLargest = -1;
+int secondLargest = -1;
+int firstSmallest = INT_MAX;
+int secondSmallest = INT_MAX;
+
+for (int i = 0; i < n; i++) {
+        if (a[i] > firstLargest) {
+            secondLargest = firstLargest;
+            firstLargest = a[i];
+        } else if (a[i] > secondLargest && a[i] != firstLargest) {
+            secondLargest = a[i];
+        }
+        if (a[i] < firstSmallest) {
+            secondSmallest = firstSmallest;
+            firstSmallest = a[i];
+        } else if (a[i] < secondSmallest && a[i] != firstSmallest) {
+            secondSmallest = a[i];
+        }
+    }
+
+    return {secondLargest, secondSmallest};
+}
