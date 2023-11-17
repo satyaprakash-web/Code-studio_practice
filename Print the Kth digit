@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int findKthFromRight(int n, int m, int k) {
+long long res = pow(n,m);
+string num[num.length()-k] - '0';
+}
+
+int main() {
+int t;
+cin >> t;
+
+while(t--){
+int n,m,k;
+cin>> n>>m>>k;
+int kthDigit = findKthFromRight(n,m,k);
+cout<< kthDigit << endl;
+}
+return 0;
+)
